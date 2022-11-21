@@ -1,6 +1,8 @@
-import {useColorMode, Button, Stack, Box} from "@chakra-ui/react";
+import {useColorMode, Button, Stack} from "@chakra-ui/react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+
+import {ContainerCard} from "./components/ContainerCard";
 
 function App() {
   const {colorMode, toggleColorMode} = useColorMode();
@@ -14,11 +16,7 @@ function App() {
         <Button onClick={toggleColorMode}>Toggle {colorMode === "light" ? "Dark" : "Light"}</Button>
       </header>
       <DndProvider backend={HTML5Backend}>
-        <Stack>
-          <Box>1</Box>
-          <Box>2</Box>
-          <Box>3</Box>
-        </Stack>
+        <ContainerCard />
       </DndProvider>
     </div>
   );
