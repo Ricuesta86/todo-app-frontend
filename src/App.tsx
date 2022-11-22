@@ -39,8 +39,8 @@ function App() {
         height={{sm: "300px", base: "200px"}}
       />
       <Stack as={Container}>
-        <Flex direction={"row"}>
-          <Box>Todo</Box>
+        <Flex alignItems={"center"} direction={"row"} justifyContent={"space-between"}>
+          <Box fontSize={32}>Todo</Box>
           <Button onClick={toggleColorMode}>
             Toggle {colorMode === "light" ? "Dark" : "Light"}
           </Button>
