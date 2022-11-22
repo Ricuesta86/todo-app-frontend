@@ -17,7 +17,7 @@ export interface ContainerState {
   cards: Item[];
 }
 
-export const ContainerCard: FC = () => {
+const ContainerCard: FC = () => {
   {
     const [cards, setCards] = useState([
       {
@@ -75,3 +75,5 @@ export const ContainerCard: FC = () => {
     );
   }
 };
+
+export default ContainerCard;
