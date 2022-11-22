@@ -51,25 +51,17 @@ export const ContainerCard: FC = () => {
     ]);
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-      setCards((prevCards: Item[]) =>
-        // update(prevCards, {
-        //   $splice: [
-        //     [dragIndex, 1],
-        //     [hoverIndex, 0, prevCards[dragIndex] as Item],
-        //   ],
-        // }),
-        {
-          const copy = [...prevCards];
-          const card = copy[dragIndex];
+      setCards((prevCards: Item[]) => {
+        const copy = [...prevCards];
+        const card = copy[dragIndex];
 
-          // remove origin
-          copy.splice(dragIndex, 1);
-          // add to target
-          copy.splice(hoverIndex, 0, card);
+        // remove origin
+        copy.splice(dragIndex, 1);
+        // add to target
+        copy.splice(hoverIndex, 0, card);
 
-          return copy;
-        },
-      );
+        return copy;
+      });
     }, []);
 
     const renderCard = useCallback((card: {id: number; text: string}, index: number) => {
