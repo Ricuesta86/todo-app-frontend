@@ -40,7 +40,9 @@ function App() {
       />
       <Stack as={Container}>
         <Flex alignItems={"center"} direction={"row"} justifyContent={"space-between"}>
-          <Box fontSize={32}>Todo</Box>
+          <Box fontSize={40} fontWeight={700} letterSpacing={20} textTransform={"uppercase"}>
+            Todo
+          </Box>
           <Button onClick={toggleColorMode}>
             Toggle {colorMode === "light" ? "Dark" : "Light"}
           </Button>

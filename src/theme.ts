@@ -14,6 +14,17 @@ const config = {
     xl: "1200px",
     "2xl": "1440px",
   },
+  styles: {
+    global: {
+      // styles for the `body`
+      body: {
+        "font-family": `'Josefin Sans', sans-serif`,
+      },
+    },
+  },
+  fonts: {
+    body: `'Josefin Sans', sans-serif`,
+  },
 };
 
 // 3. extend the theme
