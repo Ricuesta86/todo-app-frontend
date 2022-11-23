@@ -1,11 +1,15 @@
 import {
   useColorMode,
-  Button,
   Stack,
   Container,
   Heading,
   Box,
   Flex,
+  Img,
+  Image,
+  InputGroup,
+  InputLeftElement,
+  Input,
   // useMediaQuery,
 } from "@chakra-ui/react";
 import {DndProvider} from "react-dnd";
@@ -22,6 +26,8 @@ import bgDesktopDark from "./assets/images/bg-desktop-dark.jpg";
 import bgDesktopLight from "./assets/images/bg-desktop-light.jpg";
 import bgMobilDark from "./assets/images/bg-mobile-dark.jpg";
 import bgMobilLight from "./assets/images/bg-mobile-light.jpg";
+import iconMoon from "./assets/images/icon-moon.svg";
+import iconSun from "./assets/images/icon-sun.svg";
 
 function App() {
   const {colorMode, toggleColorMode} = useColorMode();
@@ -39,13 +45,33 @@ function App() {
         height={{sm: "300px", base: "200px"}}
       />
       <Stack as={Container}>
-        <Flex alignItems={"center"} direction={"row"} justifyContent={"space-between"}>
-          <Box fontSize={40} fontWeight={700} letterSpacing={20} textTransform={"uppercase"}>
+        <Flex
+          alignItems={"center"}
+          direction={"row"}
+          justifyContent={"space-between"}
+          marginBottom={"24px"}
+          marginTop={"-222px"}
+        >
+          <Box
+            color={"white"}
+            fontSize={40}
+            fontWeight={700}
+            letterSpacing={20}
+            textTransform={"uppercase"}
+          >
             Todo
           </Box>
-          <Button onClick={toggleColorMode}>
-            Toggle {colorMode === "light" ? "Dark" : "Light"}
-          </Button>
+          <Image src={colorMode === "light" ? iconSun : iconMoon} onClick={toggleColorMode} />
+          {/* <Img > /></Img> */}
+          {/* Toggle {colorMode === "light" ? "Dark" : "Light"} */}
+        </Flex>
+        <Flex
+          alignItems={"center"}
+          backgroundColor={"hsl(235, 24%, 19%)"}
+          borderRadius={"md"}
+          height={"66px"}
+        >
+          <Input variant="unstyled" />
         </Flex>
       </Stack>
       {/* {isSmallScreen ? <Mobile /> : <Desktop />} */}
