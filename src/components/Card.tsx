@@ -1,9 +1,11 @@
 import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
-import {Box} from "@chakra-ui/react";
+import {Box, Flex} from "@chakra-ui/react";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
+
+import {todo} from "../types";
 
 import {ItemTypes} from "./ItemTypes";
 
@@ -19,7 +21,9 @@ export interface CardProps {
   id: any;
   text: string;
   index: number;
+  completed: boolean;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
+  handleTogget: (id: todo["id"]) => void;
 }
 
 interface DragItem {
@@ -28,7 +32,7 @@ interface DragItem {
   type: string;
 }
 
-export const Card: FC<CardProps> = ({id, text, index, moveCard}) => {
+export const Card: FC<CardProps> = ({id, text, completed, index, moveCard, handleTogget}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [{handlerId}, drop] = useDrop<DragItem, void, {handlerId: Identifier | null}>({
     accept: ItemTypes.CARD,
@@ -101,14 +105,19 @@ export const Card: FC<CardProps> = ({id, text, index, moveCard}) => {
   drag(drop(ref));
 
   return (
-    <Box
+    <Flex
       ref={ref}
+      alignItems={"center"}
       data-handler-id={handlerId}
+      direction={"row"}
       height={"66px"}
+      justifyContent={"space-between"}
       style={{...style, opacity}}
       width={"100%"}
     >
-      {text}
-    </Box>
+      <Box cursor={"pointer"} onClick={() => handleTogget(id)}>
+        {completed ? "Completado" : text}
+      </Box>
+    </Flex>
   );
 };

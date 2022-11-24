@@ -30,30 +30,37 @@ function App() {
     {
       id: 1,
       text: "Write a cool JS library",
+      completed: false,
     },
     {
       id: 2,
       text: "Make it generic enough",
+      completed: false,
     },
     {
       id: 3,
       text: "Write README",
+      completed: false,
     },
     {
       id: 4,
       text: "Create some examples",
+      completed: false,
     },
     {
       id: 5,
       text: "Spam in Twitter and IRC to promote it (note that this element is taller than the others)",
+      completed: false,
     },
     {
       id: 6,
       text: "???",
+      completed: false,
     },
     {
       id: 7,
       text: "PROFIT",
+      completed: false,
     },
   ]);
   const [text, setText] = useState<string>("");
@@ -67,6 +74,7 @@ function App() {
           todos.concat({
             id: Date.now(),
             text,
+            completed: false,
           }),
         );
         setText("");
@@ -93,11 +101,27 @@ function App() {
   }, []);
 
   const renderCard = useCallback(
-    (card: {id: number; text: string}, index: number) => {
-      return <Card key={card.id} id={card.id} index={index} moveCard={moveCard} text={card.text} />;
+    (card: todo, index: number) => {
+      return (
+        <Card
+          key={card.id}
+          completed={card.completed}
+          handleTogget={handleTogget}
+          id={card.id}
+          index={index}
+          moveCard={moveCard}
+          text={card.text}
+        />
+      );
     },
     [moveCard],
   );
+
+  const handleTogget = (id: todo["id"]) => {
+    setTodos((todos) =>
+      todos.map((todo) => (todo.id === id ? {...todo, completed: !todo.completed} : todo)),
+    );
+  };
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
