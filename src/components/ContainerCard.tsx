@@ -5,7 +5,7 @@ import {useCallback, useState} from "react";
 import {Card} from "./Card";
 
 const style = {
-  width: 400,
+  width: "100%",
 };
 
 export interface Item {

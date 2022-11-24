@@ -1,6 +1,7 @@
 import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
+import {Box} from "@chakra-ui/react";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
@@ -100,8 +101,14 @@ export const Card: FC<CardProps> = ({id, text, index, moveCard}) => {
   drag(drop(ref));
 
   return (
-    <div ref={ref} data-handler-id={handlerId} style={{...style, opacity}}>
+    <Box
+      ref={ref}
+      data-handler-id={handlerId}
+      height={"66px"}
+      style={{...style, opacity}}
+      width={"100%"}
+    >
       {text}
-    </div>
+    </Box>
   );
 };

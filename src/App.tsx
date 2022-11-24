@@ -83,19 +83,19 @@ function App() {
     setText(event.target.value);
   };
 
-  const moveTodo = useCallback((dragIndex: number, hoverIndex: number) => {
-    setTodos((prevTodos: todo[]) => {
-      const copy = [...prevTodos];
-      const todo = copy[dragIndex];
+  // const moveTodo = useCallback((dragIndex: number, hoverIndex: number) => {
+  //   setTodos((prevTodos: todo[]) => {
+  //     const copy = [...prevTodos];
+  //     const todo = copy[dragIndex];
 
-      // remove origin
-      copy.splice(dragIndex, 1);
-      // add to target
-      copy.splice(hoverIndex, 0, todo);
+  //     // remove origin
+  //     copy.splice(dragIndex, 1);
+  //     // add to target
+  //     copy.splice(hoverIndex, 0, todo);
 
-      return copy;
-    });
-  }, []);
+  //     return copy;
+  //   });
+  // }, []);
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
@@ -148,7 +148,7 @@ function App() {
         </Flex>
         <Stack height={"448px"}>
           <DndProvider backend={HTML5Backend}>
-            <ContainerCard moveTodo={moveTodo} todos={todos} />
+            <ContainerCard />
           </DndProvider>
           <Stack>
             <Box>
