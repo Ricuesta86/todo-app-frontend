@@ -15,11 +15,6 @@ import {useCallback, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
-import ContainerCard from "./components/ContainerCard";
-
-// import Mobile from "./components/Mobile";
-// import Desktop from "./components/Desktop";
-
 import "./App.css";
 
 import bgDesktopDark from "./assets/images/bg-desktop-dark.jpg";
@@ -28,6 +23,7 @@ import bgMobilDark from "./assets/images/bg-mobile-dark.jpg";
 import bgMobilLight from "./assets/images/bg-mobile-light.jpg";
 import iconMoon from "./assets/images/icon-moon.svg";
 import iconSun from "./assets/images/icon-sun.svg";
+import {Card} from "./components/Card";
 
 function App() {
   const [todos, setTodos] = useState<todo[]>([
@@ -83,19 +79,26 @@ function App() {
     setText(event.target.value);
   };
 
-  // const moveTodo = useCallback((dragIndex: number, hoverIndex: number) => {
-  //   setTodos((prevTodos: todo[]) => {
-  //     const copy = [...prevTodos];
-  //     const todo = copy[dragIndex];
+  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+    setTodos((prevCards: todo[]) => {
+      const copy = [...prevCards];
+      const card = copy[dragIndex];
 
-  //     // remove origin
-  //     copy.splice(dragIndex, 1);
-  //     // add to target
-  //     copy.splice(hoverIndex, 0, todo);
+      // remove origin
+      copy.splice(dragIndex, 1);
+      // add to target
+      copy.splice(hoverIndex, 0, card);
 
-  //     return copy;
-  //   });
-  // }, []);
+      return copy;
+    });
+  }, []);
+
+  const renderCard = useCallback(
+    (card: {id: number; text: string}, index: number) => {
+      return <Card key={card.id} id={card.id} index={index} moveCard={moveCard} text={card.text} />;
+    },
+    [moveCard],
+  );
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
@@ -148,7 +151,7 @@ function App() {
         </Flex>
         <Stack height={"448px"}>
           <DndProvider backend={HTML5Backend}>
-            <ContainerCard />
+            <div>{todos.map((todo, i) => renderCard(todo, i))}</div>
           </DndProvider>
           <Stack>
             <Box>
