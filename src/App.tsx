@@ -65,9 +65,8 @@ function App() {
       if (text !== "") {
         setTodos((todos) =>
           todos.concat({
-            id: 1,
+            id: Date.now(),
             text,
-            index: 1,
           }),
         );
         setText("");
@@ -149,7 +148,7 @@ function App() {
             }}
           />
         </Flex>
-        <Stack height={"448px"}>
+        <Stack borderRadius={"md"} height={"448px"}>
           <DndProvider backend={HTML5Backend}>
             <div>{todos.map((todo, i) => renderCard(todo, i))}</div>
           </DndProvider>
