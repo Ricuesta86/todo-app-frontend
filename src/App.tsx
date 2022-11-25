@@ -124,7 +124,7 @@ function App() {
   };
 
   return (
-    <Box height={"800px"} maxW={"2x1"}>
+    <Box fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
       <Heading
         backgroundImage={{
           sm: colorMode === "light" ? bgDesktopLight : bgDesktopDark,
@@ -146,12 +146,12 @@ function App() {
             color={"white"}
             fontSize={40}
             fontWeight={700}
-            letterSpacing={20}
+            letterSpacing={15}
             textTransform={"uppercase"}
           >
             Todo
           </Box>
-          <Image src={colorMode === "light" ? iconSun : iconMoon} onClick={toggleColorMode} />
+          <Image src={colorMode === "light" ? iconMoon : iconSun} onClick={toggleColorMode} />
           {/* <Img > /></Img> */}
           {/* Toggle {colorMode === "light" ? "Dark" : "Light"} */}
         </Flex>
