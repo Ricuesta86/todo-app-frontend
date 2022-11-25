@@ -99,13 +99,16 @@ function App() {
       return copy;
     });
   }, []);
-
+  const handleRemove = (id: todo["id"]) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  };
   const renderCard = useCallback(
     (card: todo, index: number) => {
       return (
         <Card
           key={card.id}
           completed={card.completed}
+          handleRemove={handleRemove}
           handleTogget={handleTogget}
           id={card.id}
           index={index}

@@ -1,11 +1,13 @@
 import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
-import {Box, Flex} from "@chakra-ui/react";
+import {Box, Circle, Flex, Image, Stack} from "@chakra-ui/react";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
 import {todo} from "../types";
+import iconCross from "../assets/images/icon-cross.svg";
+import iconCheck from "../assets/images/icon-check.svg";
 
 import {ItemTypes} from "./ItemTypes";
 
@@ -24,6 +26,7 @@ export interface CardProps {
   completed: boolean;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
   handleTogget: (id: todo["id"]) => void;
+  handleRemove: (id: todo["id"]) => void;
 }
 
 interface DragItem {
@@ -32,7 +35,15 @@ interface DragItem {
   type: string;
 }
 
-export const Card: FC<CardProps> = ({id, text, completed, index, moveCard, handleTogget}) => {
+export const Card: FC<CardProps> = ({
+  id,
+  text,
+  completed,
+  index,
+  moveCard,
+  handleTogget,
+  handleRemove,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [{handlerId}, drop] = useDrop<DragItem, void, {handlerId: Identifier | null}>({
     accept: ItemTypes.CARD,
@@ -115,9 +126,25 @@ export const Card: FC<CardProps> = ({id, text, completed, index, moveCard, handl
       style={{...style, opacity}}
       width={"100%"}
     >
-      <Box cursor={"pointer"} onClick={() => handleTogget(id)}>
-        {completed ? "Completado" : text}
-      </Box>
+      <Flex alignItems={"center"} direction={"row"}>
+        {completed ? (
+          <Circle
+            // bgGradient={'l'}={"hsl(192, 100%, 67%) to hsl(280, 87%, 65%)"}
+            size={"32px"}
+            onClick={() => handleTogget(id)}
+          >
+            <Image src={iconCheck} />
+          </Circle>
+        ) : (
+          <Circle bg={"hsl(236, 33%, 92%)"} size={"32px"} onClick={() => handleTogget(id)}>
+            <Circle bg={"hsl(0, 0%, 98%)"} size={"28px"} />
+          </Circle>
+        )}
+        <Box cursor={"pointer"} onClick={() => handleTogget(id)}>
+          {completed ? "Completado" : text}
+        </Box>
+      </Flex>
+      <Image alt={"Cerrar"} cursor={"pointer"} src={iconCross} onClick={() => handleRemove(id)} />
     </Flex>
   );
 };
