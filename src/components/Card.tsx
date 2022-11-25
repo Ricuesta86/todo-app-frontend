@@ -1,7 +1,7 @@
 import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
-import {Box, Circle, Flex, Image, Stack} from "@chakra-ui/react";
+import {Box, Circle, Flex, Image} from "@chakra-ui/react";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
@@ -13,8 +13,7 @@ import {ItemTypes} from "./ItemTypes";
 
 const style = {
   border: "1px dashed gray",
-  padding: "0.5rem 1rem",
-  marginBottom: ".5rem",
+  padding: "0 22px",
   backgroundColor: "white",
   cursor: "move",
 };
@@ -126,22 +125,26 @@ export const Card: FC<CardProps> = ({
       style={{...style, opacity}}
       width={"100%"}
     >
-      <Flex alignItems={"center"} direction={"row"}>
+      <Flex alignItems={"center"} cursor={"pointer"} direction={"row"}>
         {completed ? (
           <Circle
-            // bgGradient={'l'}={"hsl(192, 100%, 67%) to hsl(280, 87%, 65%)"}
-            size={"32px"}
+            bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
+            size={"25px"}
             onClick={() => handleTogget(id)}
           >
             <Image src={iconCheck} />
           </Circle>
         ) : (
-          <Circle bg={"hsl(236, 33%, 92%)"} size={"32px"} onClick={() => handleTogget(id)}>
-            <Circle bg={"hsl(0, 0%, 98%)"} size={"28px"} />
+          <Circle bg={"hsl(236, 33%, 92%)"} size={"25px"} onClick={() => handleTogget(id)}>
+            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
           </Circle>
         )}
-        <Box cursor={"pointer"} onClick={() => handleTogget(id)}>
-          {completed ? "Completado" : text}
+        <Box
+          padding={"0 22px"}
+          textDecoration={completed ? "line-through" : ""}
+          onClick={() => handleTogget(id)}
+        >
+          {text}
         </Box>
       </Flex>
       <Image alt={"Cerrar"} cursor={"pointer"} src={iconCross} onClick={() => handleRemove(id)} />
