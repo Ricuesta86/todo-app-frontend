@@ -180,9 +180,9 @@ function App() {
             }}
           />
         </Flex>
-        <Stack>
+        <Stack bg={bgCard} borderTopRadius={"md"} marginTop={"20px"}>
           <DndProvider backend={HTML5Backend}>
-            <Box borderTopRadius={"md"} height={"448px"} overflowY={"scroll"}>
+            <Box borderTopRadius={"md"} height={"396px"} overflowY={"scroll"}>
               {todos.map((todo, i) => renderCard(todo, i))}
             </Box>
           </DndProvider>

@@ -12,7 +12,7 @@ import iconCheck from "../assets/images/icon-check.svg";
 import {ItemTypes} from "./ItemTypes";
 
 const style = {
-  border: "1px dashed gray",
+  borderBottom: "1px solid gray",
   padding: "0 22px",
   // backgroundColor: "white",
   cursor: "move",
