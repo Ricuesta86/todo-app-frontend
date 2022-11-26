@@ -129,6 +129,7 @@ function App() {
   };
 
   const bg = useColorModeValue("red.500", "hsl(235, 21%, 11%)");
+  const bgCard = useColorModeValue("red.500", "hsl(235, 24%, 19%)");
 
   return (
     <Box bg={bg} fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
@@ -179,13 +180,15 @@ function App() {
             }}
           />
         </Flex>
-        <Stack borderRadius={"md"} height={"448px"}>
+        <Stack>
           <DndProvider backend={HTML5Backend}>
-            <div>{todos.map((todo, i) => renderCard(todo, i))}</div>
+            <Box borderTopRadius={"md"} height={"448px"} overflowY={"scroll"}>
+              {todos.map((todo, i) => renderCard(todo, i))}
+            </Box>
           </DndProvider>
           <Flex
             alignItems={"center"}
-            bg={bg}
+            bg={bgCard}
             borderBottomRadius={"md"}
             direction={"row"}
             height={"52px"}

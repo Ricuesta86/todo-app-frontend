@@ -114,7 +114,7 @@ export const Card: FC<CardProps> = ({
 
   drag(drop(ref));
 
-  const bg = useColorModeValue("hsl(235, 21%, 11%)", "red.200");
+  const bg = useColorModeValue("red.200", "hsl(235, 24%, 19%)");
 
   return (
     <Flex
