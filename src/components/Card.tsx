@@ -1,7 +1,7 @@
 import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
-import {Box, Circle, Flex, Image} from "@chakra-ui/react";
+import {Box, Circle, Flex, Image, useColorModeValue} from "@chakra-ui/react";
 import {useRef} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
@@ -14,7 +14,7 @@ import {ItemTypes} from "./ItemTypes";
 const style = {
   border: "1px dashed gray",
   padding: "0 22px",
-  backgroundColor: "white",
+  // backgroundColor: "white",
   cursor: "move",
 };
 
@@ -114,10 +114,13 @@ export const Card: FC<CardProps> = ({
 
   drag(drop(ref));
 
+  const bg = useColorModeValue("red.500", "red.200");
+
   return (
     <Flex
       ref={ref}
       alignItems={"center"}
+      bgColor={bg}
       data-handler-id={handlerId}
       direction={"row"}
       height={"66px"}

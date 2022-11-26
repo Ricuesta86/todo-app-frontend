@@ -9,6 +9,8 @@ import {
   Flex,
   Image,
   Input,
+  Text,
+  useColorModeValue,
   // useMediaQuery,
 } from "@chakra-ui/react";
 import {useCallback, useState} from "react";
@@ -126,6 +128,8 @@ function App() {
     );
   };
 
+  const bg = useColorModeValue("red.500", "red.200");
+
   return (
     <Box fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
       <Heading
@@ -179,14 +183,30 @@ function App() {
           <DndProvider backend={HTML5Backend}>
             <div>{todos.map((todo, i) => renderCard(todo, i))}</div>
           </DndProvider>
-          <Stack>
-            <Box>
-              {" "}
-              5 items left
-              {`All \n Active \n Completed \n Clear Completed \n Drag and drop to reorder list`}
-            </Box>
-          </Stack>
+          <Flex
+            alignItems={"center"}
+            bg={bg}
+            borderBottomRadius={"md"}
+            direction={"row"}
+            height={"52px"}
+            justifyContent={"space-between"}
+            marginTop={"0em !important"}
+            padding={"10px 20px"}
+          >
+            <Box>{todos.length} items left</Box>
+            <Flex direction={"row"} gap="10px">
+              <Text>All</Text>
+              <Text>Active</Text>
+              <Text>Completed</Text>
+            </Flex>
+            <Box>Clear Completed</Box>
+          </Flex>
         </Stack>
+      </Stack>
+      <Stack>
+        <Text align={"center"} marginY={"80px"}>
+          Drag and drop to reorder list
+        </Text>
       </Stack>
       {/* {isSmallScreen ? <Mobile /> : <Desktop />} */}
       {/* <!-- Add dynamic number -->  */}
