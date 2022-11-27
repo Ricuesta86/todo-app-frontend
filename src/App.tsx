@@ -132,7 +132,7 @@ function App() {
   const bgCard = useColorModeValue("red.500", "hsl(235, 24%, 19%)");
 
   return (
-    <Box bg={bg} fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
+    <Box fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
       <Heading
         backgroundImage={{
           sm: colorMode === "light" ? bgDesktopLight : bgDesktopDark,
