@@ -135,7 +135,11 @@ function App() {
     );
   };
 
-  const bg = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 21%, 11%)");
+  const handleCleanCompleted = () => {
+    setTodos((todos) => todos.filter((todo) => todo.completed === false));
+  };
+
+  // const bg = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 21%, 11%)");
   const bgCard = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 24%, 19%)");
 
   return (
@@ -227,7 +231,9 @@ function App() {
                 Completed
               </Text>
             </Flex>
-            <Box>Clear Completed</Box>
+            <Box cursor={"pointer"} onClick={() => handleCleanCompleted()}>
+              Clear Completed
+            </Box>
           </Flex>
         </Stack>
       </Stack>
