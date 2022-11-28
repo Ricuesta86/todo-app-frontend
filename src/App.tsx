@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   // useMediaQuery,
 } from "@chakra-ui/react";
-import {useCallback, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -67,6 +67,13 @@ function App() {
   ]);
   const [text, setText] = useState<string>("");
   const {colorMode, toggleColorMode} = useColorMode();
+
+  const [view, setView] = useState<"all" | "active" | "completed">("all");
+  const matches = useMemo(() => {
+    return todos.filter((todo) =>
+      view === "all" ? todo : view === "active" ? !todo.completed : todo.completed,
+    );
+  }, [todos, view]);
   // const [isSmallScreen] = useMediaQuery("(max-width: 414px)");
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -128,11 +135,11 @@ function App() {
     );
   };
 
-  const bg = useColorModeValue("red.500", "hsl(235, 21%, 11%)");
-  const bgCard = useColorModeValue("red.500", "hsl(235, 24%, 19%)");
+  const bg = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 21%, 11%)");
+  const bgCard = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 24%, 19%)");
 
   return (
-    <Box fontFamily={`'Josefin Sans', sans-serif`} height={"800px"} maxW={"2x1"}>
+    <Box height={"800px"} maxW={"2x1"}>
       <Heading
         backgroundImage={{
           sm: colorMode === "light" ? bgDesktopLight : bgDesktopDark,
@@ -183,7 +190,7 @@ function App() {
         <Stack bg={bgCard} borderTopRadius={"md"} marginTop={"20px"}>
           <DndProvider backend={HTML5Backend}>
             <Box borderTopRadius={"md"} height={"396px"} overflowY={"scroll"}>
-              {todos.map((todo, i) => renderCard(todo, i))}
+              {matches.length > 0 && matches.map((todo, i) => renderCard(todo, i))}
             </Box>
           </DndProvider>
           <Flex
@@ -198,9 +205,27 @@ function App() {
           >
             <Box>{todos.length} items left</Box>
             <Flex direction={"row"} gap="10px">
-              <Text>All</Text>
-              <Text>Active</Text>
-              <Text>Completed</Text>
+              <Text
+                color={view === "all" ? "hsl(220, 98%, 61%)" : ""}
+                cursor={"pointer"}
+                onClick={() => setView("all")}
+              >
+                All
+              </Text>
+              <Text
+                color={view === "active" ? "hsl(220, 98%, 61%)" : ""}
+                cursor={"pointer"}
+                onClick={() => setView("active")}
+              >
+                Active
+              </Text>
+              <Text
+                color={view === "completed" ? "hsl(220, 98%, 61%)" : ""}
+                cursor={"pointer"}
+                onClick={() => setView("completed")}
+              >
+                Completed
+              </Text>
             </Flex>
             <Box>Clear Completed</Box>
           </Flex>
