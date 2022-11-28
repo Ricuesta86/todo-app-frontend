@@ -2,7 +2,7 @@ import type {Identifier, XYCoord} from "dnd-core";
 import type {FC} from "react";
 
 import {Box, Circle, Flex, Image, useColorModeValue} from "@chakra-ui/react";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import {useDrag, useDrop} from "react-dnd";
 
 import {todo} from "../types";
@@ -115,6 +115,7 @@ export const Card: FC<CardProps> = ({
   drag(drop(ref));
 
   const bg = useColorModeValue("red.200", "hsl(235, 24%, 19%)");
+  const [hoverCard, setHoverCard] = useState<boolean>(false);
 
   return (
     <Flex
@@ -127,6 +128,8 @@ export const Card: FC<CardProps> = ({
       justifyContent={"space-between"}
       style={{...style, opacity}}
       width={"100%"}
+      onMouseLeave={() => setHoverCard((hoverCard) => false)}
+      onMouseOver={() => setHoverCard((hoverCard) => true)}
     >
       <Flex alignItems={"center"} cursor={"pointer"} direction={"row"}>
         {completed ? (
@@ -150,7 +153,9 @@ export const Card: FC<CardProps> = ({
           {text}
         </Box>
       </Flex>
-      <Image alt={"Cerrar"} cursor={"pointer"} src={iconCross} onClick={() => handleRemove(id)} />
+      {hoverCard && (
+        <Image alt={"Cerrar"} cursor={"pointer"} src={iconCross} onClick={() => handleRemove(id)} />
+      )}
     </Flex>
   );
 };
