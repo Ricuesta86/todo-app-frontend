@@ -140,7 +140,7 @@ function App() {
     setTodos((todos) => todos.filter((todo) => todo.completed === false));
   };
 
-  const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 21%, 11%)");
+  const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
   const bgCard = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
 
   return (
@@ -175,7 +175,13 @@ function App() {
           {/* <Img > /></Img> */}
           {/* Toggle {colorMode === "light" ? "Dark" : "Light"} */}
         </Flex>
-        <Flex alignItems={"center"} backgroundColor={bg} borderRadius={"md"} height={"66px"}>
+        <Flex
+          alignItems={"center"}
+          backgroundColor={bg}
+          borderRadius={"md"}
+          boxShadow="dark-lg"
+          height={"66px"}
+        >
           <Circle bg={"hsl(236, 33%, 92%)"} size={"25px"}>
             <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
           </Circle>
@@ -190,7 +196,7 @@ function App() {
             }}
           />
         </Flex>
-        <Stack bg={bgCard} borderTopRadius={"md"} marginTop={"20px"}>
+        <Stack bg={bgCard} borderRadius={"md"} boxShadow="dark-lg" marginTop={"20px"}>
           <DndProvider backend={HTML5Backend}>
             <Box borderTopRadius={"md"} height={"396px"} overflowY={"scroll"}>
               {matches.length > 0 && matches.map((todo, i) => renderCard(todo, i))}
