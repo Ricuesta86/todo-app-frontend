@@ -11,6 +11,7 @@ import {
   Input,
   Text,
   useColorModeValue,
+  Circle,
   // useMediaQuery,
 } from "@chakra-ui/react";
 import {useCallback, useMemo, useState} from "react";
@@ -139,8 +140,8 @@ function App() {
     setTodos((todos) => todos.filter((todo) => todo.completed === false));
   };
 
-  // const bg = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 21%, 11%)");
-  const bgCard = useColorModeValue("hsl(234, 39%, 85%)", "hsl(235, 24%, 19%)");
+  const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 21%, 11%)");
+  const bgCard = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
@@ -174,12 +175,10 @@ function App() {
           {/* <Img > /></Img> */}
           {/* Toggle {colorMode === "light" ? "Dark" : "Light"} */}
         </Flex>
-        <Flex
-          alignItems={"center"}
-          backgroundColor={"hsl(235, 24%, 19%)"}
-          borderRadius={"md"}
-          height={"66px"}
-        >
+        <Flex alignItems={"center"} backgroundColor={bg} borderRadius={"md"} height={"66px"}>
+          <Circle bg={"hsl(236, 33%, 92%)"} size={"25px"}>
+            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
+          </Circle>
           <Input
             value={text}
             variant="unstyled"
