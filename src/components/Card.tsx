@@ -116,6 +116,7 @@ export const Card: FC<CardProps> = ({
 
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
   const [hoverCard, setHoverCard] = useState<boolean>(false);
+  const [hoverCircle, setHoverCircle] = useState<boolean>(false);
 
   return (
     <Flex
@@ -140,8 +141,21 @@ export const Card: FC<CardProps> = ({
           >
             <Image src={iconCheck} />
           </Circle>
+        ) : !hoverCircle ? (
+          <Circle
+            _hover={{bgGradient: "linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}}
+            bg={"hsl(236, 33%, 92%)"}
+            size={"25px"}
+            onClick={() => handleTogget(id)}
+          >
+            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
+          </Circle>
         ) : (
-          <Circle bg={"hsl(236, 33%, 92%)"} size={"25px"} onClick={() => handleTogget(id)}>
+          <Circle
+            bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
+            size={"25px"}
+            onClick={() => handleTogget(id)}
+          >
             <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
           </Circle>
         )}
@@ -149,6 +163,8 @@ export const Card: FC<CardProps> = ({
           padding={"0 22px"}
           textDecoration={completed ? "line-through" : ""}
           onClick={() => handleTogget(id)}
+          onMouseLeave={() => setHoverCircle((hoverCircle) => false)}
+          onMouseOver={() => setHoverCircle((hoverCircle) => true)}
         >
           {text}
         </Box>

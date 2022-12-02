@@ -182,10 +182,14 @@ function App() {
           boxShadow="dark-lg"
           height={"66px"}
         >
-          <Circle bg={"hsl(236, 33%, 92%)"} size={"25px"}>
+          <Circle bg={"hsl(236, 33%, 92%)"} marginX={"20px"} size={"25px"}>
             <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
           </Circle>
           <Input
+            _focus={{}}
+            _placeholder={{fontSize: "18px"}}
+            fontWeight={"700"}
+            placeholder="Create a new todo..."
             value={text}
             variant="unstyled"
             onChange={(event) => {
