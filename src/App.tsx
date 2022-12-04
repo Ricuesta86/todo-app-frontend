@@ -142,6 +142,8 @@ function App() {
 
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
   const bgCard = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
+  const textColor = useColorModeValue("hsl(236, 9%, 61%)", "hsl(236, 9%, 61%)");
+  const hoverColor = useColorModeValue("hsl(235, 19%, 35%)", "hsl(236, 9%, 61%)");
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
@@ -189,7 +191,6 @@ function App() {
           <Input
             _focus={{}}
             _placeholder={{fontSize: "18px"}}
-            fontWeight={"700"}
             placeholder="Create a new todo..."
             value={text}
             variant="unstyled"
@@ -227,6 +228,7 @@ function App() {
             alignItems={"center"}
             bg={bgCard}
             borderBottomRadius={"md"}
+            color={textColor}
             direction={"row"}
             height={"52px"}
             justifyContent={"space-between"}
@@ -234,8 +236,9 @@ function App() {
             padding={"10px 20px"}
           >
             <Box>{todos.length} items left</Box>
-            <Flex direction={"row"} gap="10px">
+            <Flex direction={"row"} fontWeight={700} gap="10px">
               <Text
+                _hover={{color: hoverColor}}
                 color={view === "all" ? "hsl(220, 98%, 61%)" : ""}
                 cursor={"pointer"}
                 onClick={() => setView("all")}
@@ -243,6 +246,7 @@ function App() {
                 All
               </Text>
               <Text
+                _hover={{color: hoverColor}}
                 color={view === "active" ? "hsl(220, 98%, 61%)" : ""}
                 cursor={"pointer"}
                 onClick={() => setView("active")}
@@ -250,6 +254,7 @@ function App() {
                 Active
               </Text>
               <Text
+                _hover={{color: hoverColor}}
                 color={view === "completed" ? "hsl(220, 98%, 61%)" : ""}
                 cursor={"pointer"}
                 onClick={() => setView("completed")}
@@ -257,14 +262,20 @@ function App() {
                 Completed
               </Text>
             </Flex>
-            <Box cursor={"pointer"} onClick={() => handleCleanCompleted()}>
+            <Box
+              _hover={{color: hoverColor}}
+              cursor={"pointer"}
+              fontSize={"17px"}
+              fontWeight={400}
+              onClick={() => handleCleanCompleted()}
+            >
               Clear Completed
             </Box>
           </Flex>
         </Stack>
       </Stack>
       <Stack>
-        <Text align={"center"} marginY={"80px"}>
+        <Text align={"center"} marginY={"60px"}>
           Drag and drop to reorder list
         </Text>
       </Stack>
