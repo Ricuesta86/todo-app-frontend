@@ -115,6 +115,7 @@ export const Card: FC<CardProps> = ({
   drag(drop(ref));
 
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
+  const textColor = useColorModeValue("hsl(233, 11%, 84%)", "hsl(235, 24%, 19%)");
   const [hoverCard, setHoverCard] = useState<boolean>(false);
   const [hoverCircle, setHoverCircle] = useState<boolean>(false);
 
@@ -160,6 +161,7 @@ export const Card: FC<CardProps> = ({
           </Circle>
         )}
         <Box
+          color={completed ? textColor : ""}
           padding={"0 22px"}
           textDecoration={completed ? "line-through" : ""}
           onClick={() => handleTogget(id)}
