@@ -181,6 +181,7 @@ function App() {
           borderRadius={"md"}
           boxShadow="dark-lg"
           height={"66px"}
+          marginBottom={"16px !important"}
         >
           <Circle bg={"hsl(236, 33%, 92%)"} marginX={"20px"} size={"25px"}>
             <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
@@ -202,7 +203,23 @@ function App() {
         </Flex>
         <Stack bg={bgCard} borderRadius={"md"} boxShadow="dark-lg" marginTop={"20px"}>
           <DndProvider backend={HTML5Backend}>
-            <Box borderTopRadius={"md"} height={"396px"} overflowY={"scroll"}>
+            <Box
+              borderTopRadius={"md"}
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                },
+                // "&::-webkit-scrollbar-track": {
+                //   width: "6px",
+                // },
+                // "&::-webkit-scrollbar-thumb": {
+                //   background: "scrollbarColor",
+                //   borderRadius: "24px",
+                // },
+              }}
+              height={"396px"}
+              overflowY={"auto"}
+            >
               {matches.length > 0 && matches.map((todo, i) => renderCard(todo, i))}
             </Box>
           </DndProvider>
