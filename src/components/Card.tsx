@@ -115,7 +115,7 @@ export const Card: FC<CardProps> = ({
   drag(drop(ref));
 
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
-  const textColor = useColorModeValue("hsl(233, 11%, 84%)", "hsl(233, 11%, 84%)");
+  const textColor = useColorModeValue("hsl(233, 11%, 84%)", "hsl(234, 11%, 52%)");
   const [hoverCard, setHoverCard] = useState<boolean>(false);
   const [hoverCircle, setHoverCircle] = useState<boolean>(false);
 
@@ -136,6 +136,7 @@ export const Card: FC<CardProps> = ({
       <Flex alignItems={"center"} cursor={"pointer"} direction={"row"}>
         {completed ? (
           <Circle
+            bg={"black"}
             bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
             size={"25px"}
             onClick={() => handleTogget(id)}
@@ -153,11 +154,12 @@ export const Card: FC<CardProps> = ({
           </Circle>
         ) : (
           <Circle
+            bg={"hsl(236, 33%, 92%)"}
             bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
             size={"25px"}
             onClick={() => handleTogget(id)}
           >
-            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
+            <Circle bg={"hsl(0, 0%, 98%)"} size={"21px"} />
           </Circle>
         )}
         <Box

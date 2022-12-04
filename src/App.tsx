@@ -143,7 +143,7 @@ function App() {
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
   const bgCard = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
   const textColor = useColorModeValue("hsl(236, 9%, 61%)", "hsl(236, 9%, 61%)");
-  const hoverColor = useColorModeValue("hsl(235, 19%, 35%)", "hsl(236, 9%, 61%)");
+  const hoverColor = useColorModeValue("hsl(235, 19%, 35%)", "hsl(233, 11%, 84%)");
 
   return (
     <Box height={"800px"} maxW={"2x1"}>
