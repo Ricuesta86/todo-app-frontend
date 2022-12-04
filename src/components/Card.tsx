@@ -115,7 +115,7 @@ export const Card: FC<CardProps> = ({
   drag(drop(ref));
 
   const bg = useColorModeValue("hsl(0, 0%, 100%)", "hsl(235, 24%, 19%)");
-  const textColor = useColorModeValue("hsl(233, 11%, 84%)", "hsl(235, 24%, 19%)");
+  const textColor = useColorModeValue("hsl(233, 11%, 84%)", "hsl(233, 11%, 84%)");
   const [hoverCard, setHoverCard] = useState<boolean>(false);
   const [hoverCircle, setHoverCircle] = useState<boolean>(false);
 
