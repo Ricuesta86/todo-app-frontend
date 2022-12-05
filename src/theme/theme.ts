@@ -22,7 +22,7 @@ const styles = {
   global: (props: StyleFunctionProps) => ({
     body: {
       "font-family": `'Josefin Sans', sans-serif`,
-      "font-size": "18px",
+      "font-size": {base: "12px", sm: "18px"},
       color: mode("hsl(235,19%, 35%)", "hsl(233, 11%, 84%)")(props),
       bg: mode("hsl(0, 0%, 98%)", "hsl(235, 21%, 11%)")(props),
     },

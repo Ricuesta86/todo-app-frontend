@@ -154,26 +154,32 @@ function App() {
         }}
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
-        height={{sm: "300px", base: "200px"}}
+        height={{base: "200px", sm: "300px"}}
       />
-      <Stack as={Container}>
+      <Stack marginX={"25px"}>
         <Flex
           alignItems={"center"}
           direction={"row"}
           justifyContent={"space-between"}
           marginBottom={"24px"}
-          marginTop={"-222px"}
+          marginTop={{base: "-167px", sm: "-222px"}}
         >
           <Box
             color={"white"}
-            fontSize={40}
+            fontSize={{base: "26px", sm: 40}}
             fontWeight={700}
-            letterSpacing={15}
+            letterSpacing={{base: "10px", sm: 15}}
+            marginTop={"10px"}
             textTransform={"uppercase"}
           >
             Todo
           </Box>
-          <Image src={colorMode === "light" ? iconMoon : iconSun} onClick={toggleColorMode} />
+          <Image
+            height={{base: "22px", sm: "28px"}}
+            src={colorMode === "light" ? iconMoon : iconSun}
+            width={{base: "22px", sm: "28px"}}
+            onClick={toggleColorMode}
+          />
           {/* <Img > /></Img> */}
           {/* Toggle {colorMode === "light" ? "Dark" : "Light"} */}
         </Flex>
@@ -182,15 +188,15 @@ function App() {
           backgroundColor={bg}
           borderRadius={"md"}
           boxShadow="dark-lg"
-          height={"66px"}
-          marginBottom={"16px !important"}
+          height={["48px", "66px"]}
+          marginBottom={{base: "7px !important", sm: "16px !important"}}
         >
-          <Circle bg={"hsl(236, 33%, 92%)"} marginX={"20px"} size={"25px"}>
-            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
+          <Circle bg={"hsl(236, 33%, 92%)"} marginX={"20px"} size={{base: "22px", sm: "25px"}}>
+            <Circle bg={bg} size={{base: "20px", sm: "23px"}} />
           </Circle>
           <Input
             _focus={{}}
-            _placeholder={{fontSize: "18px"}}
+            _placeholder={{fontSize: {base: "12px", sm: "18px"}}}
             placeholder="Create a new todo..."
             value={text}
             variant="unstyled"
@@ -218,7 +224,7 @@ function App() {
                 //   borderRadius: "24px",
                 // },
               }}
-              height={"396px"}
+              height={["312px", "396px"]}
               overflowY={"auto"}
             >
               {matches.length > 0 && matches.map((todo, i) => renderCard(todo, i))}
@@ -270,7 +276,6 @@ function App() {
             <Box
               _hover={{color: hoverColor}}
               cursor={"pointer"}
-              fontSize={"17px"}
               fontWeight={400}
               onClick={() => handleCleanCompleted()}
             >
