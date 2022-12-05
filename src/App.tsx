@@ -11,6 +11,8 @@ import {
   Text,
   useColorModeValue,
   Circle,
+  useMediaQuery,
+  Container,
   // useMediaQuery,
 } from "@chakra-ui/react";
 import {useCallback, useMemo, useState} from "react";
@@ -67,6 +69,7 @@ function App() {
   ]);
   const [text, setText] = useState<string>("");
   const {colorMode, toggleColorMode} = useColorMode();
+  const [isMobile] = useMediaQuery("(max-width: 414px)");
 
   const [view, setView] = useState<"all" | "active" | "completed">("all");
   const matches = useMemo(() => {
@@ -145,7 +148,7 @@ function App() {
   const hoverColor = useColorModeValue("hsl(235, 19%, 35%)", "hsl(233, 11%, 84%)");
 
   return (
-    <Box height={"800px"} maxW={"2x1"}>
+    <Box height={isMobile ? "730px" : "800px"} maxW={"2x1"}>
       <Heading
         backgroundImage={{
           base: colorMode === "light" ? bgMobilLight : bgMobilDark,
@@ -155,7 +158,7 @@ function App() {
         backgroundSize={"cover"}
         height={{base: "200px", sm: "300px"}}
       />
-      <Stack marginX={"25px"}>
+      <Stack as={isMobile ? Stack : Container} marginX={isMobile ? "25px !important" : ""}>
         <Flex
           alignItems={"center"}
           direction={"row"}
@@ -322,7 +325,7 @@ function App() {
         </Flex>
       </Stack>
       <Stack>
-        <Text align={"center"} marginY={"60px"}>
+        <Text align={"center"} marginY={isMobile ? "42px" : "60px"}>
           Drag and drop to reorder list
         </Text>
       </Stack>
