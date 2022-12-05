@@ -126,7 +126,7 @@ export const Card: FC<CardProps> = ({
       bgColor={bg}
       data-handler-id={handlerId}
       direction={"row"}
-      height={"66px"}
+      height={["52px", "66px"]}
       justifyContent={"space-between"}
       style={{...style, opacity}}
       width={"100%"}
@@ -136,9 +136,9 @@ export const Card: FC<CardProps> = ({
       <Flex alignItems={"center"} cursor={"pointer"} direction={"row"}>
         {completed ? (
           <Circle
-            bg={"black"}
+            bg={"hsl(236, 33%, 92%)"}
             bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
-            size={"25px"}
+            size={{base: "22px", sm: "25px"}}
             onClick={() => handleTogget(id)}
           >
             <Image src={iconCheck} />
@@ -147,19 +147,19 @@ export const Card: FC<CardProps> = ({
           <Circle
             _hover={{bgGradient: "linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}}
             bg={"hsl(236, 33%, 92%)"}
-            size={"25px"}
+            size={{base: "22px", sm: "25px"}}
             onClick={() => handleTogget(id)}
           >
-            <Circle bg={"hsl(0, 0%, 98%)"} size={"23px"} />
+            <Circle bg={bg} size={{base: "20px", sm: "23px"}} />
           </Circle>
         ) : (
           <Circle
             bg={"hsl(236, 33%, 92%)"}
             bgGradient={"linear(to-r, hsl(192, 100%, 67%), hsl(280, 87%, 65%))"}
-            size={"25px"}
+            size={{base: "22px", sm: "25px"}}
             onClick={() => handleTogget(id)}
           >
-            <Circle bg={"hsl(0, 0%, 98%)"} size={"21px"} />
+            <Circle bg={bg} size={"21px"} />
           </Circle>
         )}
         <Box
