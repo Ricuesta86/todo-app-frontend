@@ -149,8 +149,8 @@ function App() {
     <Box height={"800px"} maxW={"2x1"}>
       <Heading
         backgroundImage={{
-          sm: colorMode === "light" ? bgDesktopLight : bgDesktopDark,
           base: colorMode === "light" ? bgMobilLight : bgMobilDark,
+          sm: colorMode === "light" ? bgDesktopLight : bgDesktopDark,
         }}
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
@@ -236,7 +236,12 @@ function App() {
             padding={"10px 20px"}
           >
             <Box>{todos.length} items left</Box>
-            <Flex direction={"row"} fontWeight={700} gap="10px">
+            <Flex
+              direction={"row"}
+              display={{base: "none", sm: "none", md: "flex"}}
+              fontWeight={700}
+              gap="10px"
+            >
               <Text
                 _hover={{color: hoverColor}}
                 color={view === "all" ? "hsl(220, 98%, 61%)" : ""}
@@ -273,6 +278,44 @@ function App() {
             </Box>
           </Flex>
         </Stack>
+        <Flex
+          alignItems={"center"}
+          bg={bg}
+          borderRadius={"md"}
+          boxShadow="dark-lg"
+          direction={"row"}
+          display={{base: "flex", md: "none"}}
+          fontWeight={700}
+          gap="10px"
+          height={"52px"}
+          justifyContent={"center"}
+          marginTop={"25px !important"}
+        >
+          <Text
+            _hover={{color: hoverColor}}
+            color={view === "all" ? "hsl(220, 98%, 61%)" : ""}
+            cursor={"pointer"}
+            onClick={() => setView("all")}
+          >
+            All
+          </Text>
+          <Text
+            _hover={{color: hoverColor}}
+            color={view === "active" ? "hsl(220, 98%, 61%)" : ""}
+            cursor={"pointer"}
+            onClick={() => setView("active")}
+          >
+            Active
+          </Text>
+          <Text
+            _hover={{color: hoverColor}}
+            color={view === "completed" ? "hsl(220, 98%, 61%)" : ""}
+            cursor={"pointer"}
+            onClick={() => setView("completed")}
+          >
+            Completed
+          </Text>
+        </Flex>
       </Stack>
       <Stack>
         <Text align={"center"} marginY={"60px"}>

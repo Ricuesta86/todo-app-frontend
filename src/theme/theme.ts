@@ -12,7 +12,7 @@ const config = {
   useSystemColorMode: false,
 };
 const breakpoints = {
-  sm: "375px",
+  sm: "414px",
   md: "768px",
   lg: "960px",
   xl: "1200px",
