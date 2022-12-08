@@ -15,7 +15,7 @@ import {
   Container,
   // useMediaQuery,
 } from "@chakra-ui/react";
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -28,45 +28,10 @@ import bgMobilLight from "./assets/images/bg-mobile-light.jpg";
 import iconMoon from "./assets/images/icon-moon.svg";
 import iconSun from "./assets/images/icon-sun.svg";
 import {Card} from "./components/Card";
+import api from "./api/api";
 
 function App() {
-  const [todos, setTodos] = useState<todo[]>([
-    {
-      id: 1,
-      text: "Write a cool JS library",
-      completed: false,
-    },
-    {
-      id: 2,
-      text: "Make it generic enough",
-      completed: false,
-    },
-    {
-      id: 3,
-      text: "Write README",
-      completed: false,
-    },
-    {
-      id: 4,
-      text: "Create some examples",
-      completed: false,
-    },
-    {
-      id: 5,
-      text: "Spam in Twitter and IRC to promote it (note that this element is taller than the others)",
-      completed: false,
-    },
-    {
-      id: 6,
-      text: "???",
-      completed: false,
-    },
-    {
-      id: 7,
-      text: "PROFIT",
-      completed: false,
-    },
-  ]);
+  const [todos, setTodos] = useState<todo[]>(api.todos.list);
   const [text, setText] = useState<string>("");
   const {colorMode, toggleColorMode} = useColorMode();
   const [isMobile] = useMediaQuery("(max-width: 414px)");
@@ -77,7 +42,10 @@ function App() {
       view === "all" ? todo : view === "active" ? !todo.completed : todo.completed,
     );
   }, [todos, view]);
-  // const [isSmallScreen] = useMediaQuery("(max-width: 414px)");
+
+  useEffect(() => {
+    api.todos.set(todos);
+  }, [todos]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
