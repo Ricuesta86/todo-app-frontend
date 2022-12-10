@@ -8,7 +8,7 @@ import {mode} from "@chakra-ui/theme-tools";
 
 // 2. Add your color mode config
 const config = {
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 const breakpoints = {
