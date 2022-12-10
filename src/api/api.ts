@@ -5,8 +5,8 @@ const api = {
     list: (): todo[] => {
       try {
         return JSON.parse(
-          localStorage.getItem("todos") ||
-            `[            {
+          // localStorage.getItem("todos") ||
+          `[            {
       id: 1,
       text: "Complete online Javascript course",
       completed: true,
