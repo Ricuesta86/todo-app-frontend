@@ -141,7 +141,7 @@ export const Card: FC<CardProps> = ({
             size={{base: "22px", sm: "25px"}}
             onClick={() => handleTogget(id)}
           >
-            <Image src={iconCheck} />
+            <Image alt={"Icon Check"} src={iconCheck} />
           </Circle>
         ) : !hoverCircle ? (
           <Circle
