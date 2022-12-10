@@ -145,6 +145,7 @@ function App() {
             Todo
           </Box>
           <Image
+            alt={colorMode === "light" ? "Icon Moon" : "Icon Sun"}
             height={{base: "22px", sm: "28px"}}
             src={colorMode === "light" ? iconMoon : iconSun}
             width={{base: "22px", sm: "28px"}}
